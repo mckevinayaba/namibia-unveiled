@@ -14,7 +14,165 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      booking_enquiries: {
+        Row: {
+          arrive_date: string
+          budget: string
+          created_at: string
+          depart_date: string
+          email: string
+          id: string
+          internal_notes: string | null
+          name: string
+          notes: string | null
+          source_page: string | null
+          status: Database["public"]["Enums"]["submission_status"]
+          travellers: number
+          trip_types: string[]
+        }
+        Insert: {
+          arrive_date: string
+          budget: string
+          created_at?: string
+          depart_date: string
+          email: string
+          id?: string
+          internal_notes?: string | null
+          name: string
+          notes?: string | null
+          source_page?: string | null
+          status?: Database["public"]["Enums"]["submission_status"]
+          travellers: number
+          trip_types?: string[]
+        }
+        Update: {
+          arrive_date?: string
+          budget?: string
+          created_at?: string
+          depart_date?: string
+          email?: string
+          id?: string
+          internal_notes?: string | null
+          name?: string
+          notes?: string | null
+          source_page?: string | null
+          status?: Database["public"]["Enums"]["submission_status"]
+          travellers?: number
+          trip_types?: string[]
+        }
+        Relationships: []
+      }
+      partner_applications: {
+        Row: {
+          contact_name: string
+          created_at: string
+          email: string
+          id: string
+          internal_notes: string | null
+          message: string
+          operation_name: string
+          partner_type: string | null
+          phone: string | null
+          region: string
+          source_page: string | null
+          status: Database["public"]["Enums"]["submission_status"]
+          website: string | null
+        }
+        Insert: {
+          contact_name: string
+          created_at?: string
+          email: string
+          id?: string
+          internal_notes?: string | null
+          message: string
+          operation_name: string
+          partner_type?: string | null
+          phone?: string | null
+          region: string
+          source_page?: string | null
+          status?: Database["public"]["Enums"]["submission_status"]
+          website?: string | null
+        }
+        Update: {
+          contact_name?: string
+          created_at?: string
+          email?: string
+          id?: string
+          internal_notes?: string | null
+          message?: string
+          operation_name?: string
+          partner_type?: string | null
+          phone?: string | null
+          region?: string
+          source_page?: string | null
+          status?: Database["public"]["Enums"]["submission_status"]
+          website?: string | null
+        }
+        Relationships: []
+      }
+      route_requests: {
+        Row: {
+          budget_range: string
+          created_at: string
+          days: number
+          email: string
+          id: string
+          interest_areas: string[]
+          internal_notes: string | null
+          name: string
+          notes: string | null
+          preferred_regions: string[]
+          remote_road_comfort: string
+          route_of_interest: string | null
+          season: string
+          self_drive_or_guided: string
+          source_page: string | null
+          status: Database["public"]["Enums"]["submission_status"]
+          travel_style: string
+          vehicle_type: string
+        }
+        Insert: {
+          budget_range: string
+          created_at?: string
+          days: number
+          email: string
+          id?: string
+          interest_areas?: string[]
+          internal_notes?: string | null
+          name: string
+          notes?: string | null
+          preferred_regions?: string[]
+          remote_road_comfort: string
+          route_of_interest?: string | null
+          season: string
+          self_drive_or_guided: string
+          source_page?: string | null
+          status?: Database["public"]["Enums"]["submission_status"]
+          travel_style: string
+          vehicle_type: string
+        }
+        Update: {
+          budget_range?: string
+          created_at?: string
+          days?: number
+          email?: string
+          id?: string
+          interest_areas?: string[]
+          internal_notes?: string | null
+          name?: string
+          notes?: string | null
+          preferred_regions?: string[]
+          remote_road_comfort?: string
+          route_of_interest?: string | null
+          season?: string
+          self_drive_or_guided?: string
+          source_page?: string | null
+          status?: Database["public"]["Enums"]["submission_status"]
+          travel_style?: string
+          vehicle_type?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +181,12 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      submission_status:
+        | "new"
+        | "reviewing"
+        | "contacted"
+        | "converted"
+        | "archived"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +313,14 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      submission_status: [
+        "new",
+        "reviewing",
+        "contacted",
+        "converted",
+        "archived",
+      ],
+    },
   },
 } as const
