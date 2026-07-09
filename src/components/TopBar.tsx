@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, Search } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import logoInk from "@/assets/btl-logo-ink.png.asset.json";
+const logoInk = { url: "/btl-logo-ink.png" };
 
 const navItems = [
   { to: "/discover", label: "Discover" },
