@@ -11,9 +11,16 @@ export type BookingEnquiry = {
 
 export type TravelStyle = "Self-drive" | "Guided" | "Mixed";
 export type VehicleType =
-  "Sedan" | "SUV (2x4)" | "SUV (4x4)" | "Camper / 4x4 with rooftop tent" | "Not sure yet";
+  | "Sedan"
+  | "SUV (2x4)"
+  | "SUV (4x4)"
+  | "Camper / 4x4 with rooftop tent"
+  | "Not sure yet";
 export type BudgetRange =
-  "N$25,000–40,000 pp" | "N$40,000–65,000 pp" | "N$65,000–100,000 pp" | "N$100,000+ pp";
+  | "N$25,000–40,000 pp"
+  | "N$40,000–65,000 pp"
+  | "N$65,000–100,000 pp"
+  | "N$100,000+ pp";
 export type RemoteRoadComfort = "New to it — keep it easy" | "Some experience" | "Very comfortable";
 
 export type RouteRequest = {
