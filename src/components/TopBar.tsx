@@ -30,7 +30,7 @@ export function TopBar() {
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="container-wide flex h-20 items-center justify-between md:h-24">
+      <div className="container-wide flex h-24 items-center justify-between md:h-28">
         {/* Logo */}
         <Link
           to="/"
@@ -40,7 +40,7 @@ export function TopBar() {
           <img
             src={logoInk.url}
             alt="Beyond The Loop Namibia"
-            className="h-10 w-auto md:h-12"
+            className="h-16 w-auto md:h-20"
             loading="eager"
             decoding="async"
           />

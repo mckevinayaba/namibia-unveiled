@@ -7,7 +7,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   return (
     <div className="relative min-h-screen bg-background text-foreground">
       <TopBar />
-      <main className="pb-28 pt-20 md:pb-16 md:pt-24">{children}</main>
+      <main className="pb-28 pt-24 md:pb-16 md:pt-28">{children}</main>
       <BottomNav />
     </div>
   );

@@ -10,7 +10,7 @@ export function Footer() {
           <img
             src={logo.url}
             alt="Beyond The Loop Namibia"
-            className="h-14 w-auto md:h-16"
+            className="h-24 w-auto md:h-28"
             loading="lazy"
           />
           <p className="mt-4 max-w-sm text-sm text-white/60">
