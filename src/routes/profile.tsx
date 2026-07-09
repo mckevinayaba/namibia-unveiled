@@ -54,7 +54,7 @@ function Profile() {
         <section className="md:col-span-7">
           <ul className="divide-y divide-border overflow-hidden rounded-3xl border border-border bg-card">
             {[
-              { Icon: Bookmark, t: "Saved experiences", s: "4 saved · Dark Frontier, Damara Quiet Hours…" },
+              { Icon: Bookmark, t: "Saved experiences", s: "Dark Frontier, Damaraland walks and more" },
               { Icon: MapPinned, t: "My routes", s: "2 route files ready to download" },
               { Icon: Bell, t: "Notifications", s: "Trip updates, moon calendar, price watches" },
               { Icon: CreditCard, t: "Payments", s: "Cards, invoices and provisional holds" },
