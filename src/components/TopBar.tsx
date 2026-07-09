@@ -1,17 +1,21 @@
 import { Link } from "@tanstack/react-router";
 import { Search } from "lucide-react";
 
+import logo from "@/assets/btl-logo.png.asset.json";
+
 export function TopBar() {
   return (
     <header className="glass-bone fixed inset-x-0 top-0 z-40 border-b border-border/60">
-      <div className="container-wide flex h-14 items-center justify-between md:h-16">
-        <Link to="/" className="flex items-center gap-2">
-          <span aria-hidden className="inline-block h-2 w-2 rounded-full bg-[color:var(--clay)]" />
-          <span className="font-display text-[15px] leading-none tracking-tight md:text-base">
-            Beyond The Loop
-            <span className="ml-1 align-middle text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
-              Namibia
-            </span>
+      <div className="container-wide flex h-16 items-center justify-between md:h-20">
+        <Link to="/" aria-label="Beyond The Loop Namibia" className="flex items-center">
+          <span className="inline-flex items-center justify-center rounded-full bg-[color:var(--night)] px-3 py-1.5 shadow-sm">
+            <img
+              src={logo.url}
+              alt="Beyond The Loop Namibia"
+              className="h-8 w-auto md:h-10"
+              loading="eager"
+              decoding="async"
+            />
           </span>
         </Link>
 
