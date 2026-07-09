@@ -1,12 +1,19 @@
 import { Link } from "@tanstack/react-router";
 
+import logo from "@/assets/btl-logo.png.asset.json";
+
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-[color:var(--sand)]">
+    <footer className="border-t border-border bg-[color:var(--night)] text-[color:var(--bone)]">
       <div className="container-wide grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
-          <p className="font-display text-2xl">Beyond The Loop</p>
-          <p className="mt-2 max-w-sm text-sm text-muted-foreground">
+          <img
+            src={logo.url}
+            alt="Beyond The Loop Namibia"
+            className="h-14 w-auto md:h-16"
+            loading="lazy"
+          />
+          <p className="mt-4 max-w-sm text-sm text-white/60">
             A travel intelligence platform for hidden Namibia. Windhoek · Swakopmund · anywhere the
             road quiets down.
           </p>
