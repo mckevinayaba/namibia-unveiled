@@ -34,7 +34,7 @@ function RoutesPage() {
             <div className="flex flex-col justify-between gap-6 p-6 md:col-span-6 md:p-10">
               <div>
                 <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-                  {r.days} days · {r.distanceKm.toLocaleString()} km · {r.difficulty}
+                  {r.days} · {r.distance} · {r.difficulty}
                 </p>
                 <h2 className="mt-3 font-display text-3xl leading-tight md:text-4xl">{r.title}</h2>
                 <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">{r.summary}</p>

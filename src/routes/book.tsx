@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/PageHeader";
-import { CalendarCheck, Users, Sparkles, ShieldCheck } from "lucide-react";
+import { CalendarCheck, Users, PenLine, ShieldCheck } from "lucide-react";
 
 export const Route = createFileRoute("/book")({
   head: () => ({
@@ -77,7 +77,7 @@ function Book() {
             <p className="eyebrow">How it works</p>
             <ul className="mt-6 space-y-6">
               {[
-                { Icon: Sparkles, t: "Draft in a day", b: "A first itinerary with routes, camps and rough pricing — human, not templated." },
+                { Icon: PenLine, t: "Draft in a day", b: "A first itinerary with routes, camps and rough pricing — human, not templated." },
                 { Icon: Users, t: "One point of contact", b: "You speak to the same specialist from first call to the drive home." },
                 { Icon: CalendarCheck, t: "Confirm when ready", b: "We hold provisional bookings for 72 hours while you decide." },
                 { Icon: ShieldCheck, t: "Safety, quietly built in", b: "Sat comms, route files, and a 24/7 Windhoek line on the road." },
