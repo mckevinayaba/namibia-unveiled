@@ -4,7 +4,10 @@ import { motion } from "framer-motion";
 
 import hero from "@/assets/hero-desert-night.jpg";
 import darkFrontier from "@/assets/dark-frontier.jpg";
-import { experiences, routes } from "@/lib/mock-data";
+import { experiences } from "@/data/experiences";
+import { routes } from "@/data/routes";
+import { ExperienceCard } from "@/components/cards/ExperienceCard";
+import { Footer } from "@/components/sections/Footer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -68,8 +71,8 @@ function Home() {
               transition={{ delay: 0.55, duration: 0.8 }}
               className="mt-6 max-w-xl text-[15px] leading-relaxed text-white/75 md:text-base"
             >
-              A travel intelligence platform for hidden Namibia. Routes the
-              guidebooks don't map. Nights under skies that still remember silence.
+              A travel intelligence platform for hidden Namibia. Routes the guidebooks don't map.
+              Nights under skies that still remember silence.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -125,9 +128,9 @@ function Home() {
             <span className="text-muted-foreground">remembered.</span>
           </h2>
           <p className="mt-6 max-w-md text-[15px] leading-relaxed text-muted-foreground md:text-base">
-            Astronomy nights, silent desert evenings, cultural sky stories, and
-            routes planned around the moon. Designed for travellers who came
-            looking for something quieter than a bucket list.
+            Astronomy nights, silent desert evenings, cultural sky stories, and routes planned
+            around the moon. Designed for travellers who came looking for something quieter than a
+            bucket list.
           </p>
           <Link
             to="/dark-frontier"
@@ -164,38 +167,17 @@ function Home() {
             <p className="eyebrow">A curated shelf</p>
             <h2 className="mt-3 font-display text-3xl md:text-5xl">Quiet, considered.</h2>
           </div>
-          <Link to="/discover" className="hidden text-sm text-muted-foreground hover:text-foreground md:inline">
+          <Link
+            to="/discover"
+            className="hidden text-sm text-muted-foreground hover:text-foreground md:inline"
+          >
             View all
           </Link>
         </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {experiences.map((x) => (
-            <article
-              key={x.slug}
-              className="group overflow-hidden rounded-2xl border border-border bg-card transition hover:shadow-[0_30px_80px_-40px_rgba(20,22,28,0.35)]"
-            >
-              <div className="relative aspect-[4/5] overflow-hidden">
-                <img
-                  src={x.image}
-                  alt={x.title}
-                  className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
-                  loading="lazy"
-                />
-                <span className="absolute left-3 top-3 rounded-full bg-[color:var(--night)]/70 px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-white/90 backdrop-blur">
-                  {x.tag}
-                </span>
-              </div>
-              <div className="p-5">
-                <p className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{x.region}</p>
-                <h3 className="mt-1 font-display text-lg leading-snug">{x.title}</h3>
-                <p className="mt-2 line-clamp-2 text-[13px] text-muted-foreground">{x.blurb}</p>
-                <div className="mt-4 flex items-center justify-between text-[12px]">
-                  <span className="text-muted-foreground">{x.duration}</span>
-                  <span className="font-medium">{x.price}</span>
-                </div>
-              </div>
-            </article>
+            <ExperienceCard key={x.slug} experience={x} />
           ))}
         </div>
       </section>
@@ -220,15 +202,23 @@ function Home() {
             {routes.map((r) => (
               <Link
                 key={r.slug}
-                to="/routes"
+                to="/routes/$slug"
+                params={{ slug: r.slug }}
                 className="group overflow-hidden rounded-2xl border border-white/10 bg-white/5"
               >
                 <div className="relative aspect-[5/4] overflow-hidden">
-                  <img src={r.image} alt={r.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]" loading="lazy" />
+                  <img
+                    src={r.image}
+                    alt={r.title}
+                    className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                    loading="lazy"
+                  />
                 </div>
                 <div className="p-5">
                   <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.18em] text-white/60">
-                    <span>{r.days} · {r.distance}</span>
+                    <span>
+                      {r.days} · {r.distance}
+                    </span>
                     <span>{r.difficulty}</span>
                   </div>
                   <h3 className="mt-2 font-display text-xl">{r.title}</h3>
@@ -261,43 +251,5 @@ function Home() {
 
       <Footer />
     </div>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="border-t border-border bg-[color:var(--sand)]">
-      <div className="container-wide grid gap-10 py-14 md:grid-cols-4">
-        <div className="md:col-span-2">
-          <p className="font-display text-2xl">Beyond The Loop</p>
-          <p className="mt-2 max-w-sm text-sm text-muted-foreground">
-            A travel intelligence platform for hidden Namibia. Windhoek · Swakopmund · anywhere the road quiets down.
-          </p>
-        </div>
-        <div>
-          <p className="eyebrow">Platform</p>
-          <ul className="mt-3 space-y-2 text-sm">
-            <li><Link to="/discover" className="hover:text-foreground text-muted-foreground">Discover</Link></li>
-            <li><Link to="/routes" className="hover:text-foreground text-muted-foreground">Routes</Link></li>
-            <li><Link to="/book" className="hover:text-foreground text-muted-foreground">Book</Link></li>
-            <li><Link to="/guide" className="hover:text-foreground text-muted-foreground">Guide</Link></li>
-          </ul>
-        </div>
-        <div>
-          <p className="eyebrow">Company</p>
-          <ul className="mt-3 space-y-2 text-sm">
-            <li><Link to="/dark-frontier" className="hover:text-foreground text-muted-foreground">Dark Frontier</Link></li>
-            <li><Link to="/partner" className="hover:text-foreground text-muted-foreground">Partner with us</Link></li>
-            <li><Link to="/profile" className="hover:text-foreground text-muted-foreground">Account</Link></li>
-          </ul>
-        </div>
-      </div>
-      <div className="border-t border-border/70">
-        <div className="container-wide flex flex-col items-start justify-between gap-2 py-5 text-xs text-muted-foreground md:flex-row md:items-center">
-          <p>© {new Date().getFullYear()} Beyond The Loop Namibia</p>
-          <p>Made in Namibia · for the traveller who came for the quiet.</p>
-        </div>
-      </div>
-    </footer>
   );
 }

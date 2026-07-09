@@ -1,13 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PageHeader } from "@/components/PageHeader";
-import { experiences } from "@/lib/mock-data";
+import { PageHeader } from "@/components/sections/PageHeader";
+import { ExperienceCard } from "@/components/cards/ExperienceCard";
+import { experiences } from "@/data/experiences";
 import { Search, SlidersHorizontal } from "lucide-react";
 
 export const Route = createFileRoute("/discover")({
   head: () => ({
     meta: [
       { title: "Discover · Beyond The Loop Namibia" },
-      { name: "description", content: "Curated experiences beyond the standard Namibia loop — dark skies, culture, silence and quiet stays." },
+      {
+        name: "description",
+        content:
+          "Curated experiences beyond the standard Namibia loop — dark skies, culture, silence and quiet stays.",
+      },
     ],
   }),
   component: Discover,
@@ -52,25 +57,12 @@ function Discover() {
       </div>
 
       <section className="container-wide mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {experiences.concat(experiences).slice(0, 9).map((x, i) => (
-          <article key={x.slug + i} className="group overflow-hidden rounded-2xl border border-border bg-card">
-            <div className="relative aspect-[5/4] overflow-hidden">
-              <img src={x.image} alt={x.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]" loading="lazy" />
-              <span className="absolute left-3 top-3 rounded-full bg-[color:var(--night)]/75 px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-white/90 backdrop-blur">
-                {x.tag}
-              </span>
-            </div>
-            <div className="p-5">
-              <p className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{x.region}</p>
-              <h3 className="mt-1 font-display text-xl leading-snug">{x.title}</h3>
-              <p className="mt-2 line-clamp-2 text-[13px] text-muted-foreground">{x.blurb}</p>
-              <div className="mt-4 flex items-center justify-between text-[12px]">
-                <span className="text-muted-foreground">{x.duration}</span>
-                <span className="font-medium">{x.price}</span>
-              </div>
-            </div>
-          </article>
-        ))}
+        {experiences
+          .concat(experiences)
+          .slice(0, 9)
+          .map((x, i) => (
+            <ExperienceCard key={x.slug + i} experience={x} />
+          ))}
       </section>
     </div>
   );

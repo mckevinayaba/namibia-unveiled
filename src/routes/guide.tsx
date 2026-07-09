@@ -1,12 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PageHeader } from "@/components/PageHeader";
-import { guideChapters } from "@/lib/mock-data";
+import { PageHeader } from "@/components/sections/PageHeader";
+import { guideChapters } from "@/data/guide";
 
 export const Route = createFileRoute("/guide")({
   head: () => ({
     meta: [
       { title: "The Guide · Beyond The Loop Namibia" },
-      { name: "description", content: "A slow, honest field guide to travelling Namibia beyond the standard loop." },
+      {
+        name: "description",
+        content: "A slow, honest field guide to travelling Namibia beyond the standard loop.",
+      },
     ],
   }),
   component: Guide,
@@ -23,7 +26,10 @@ function Guide() {
 
       <div className="container-wide mt-14 grid gap-4">
         {guideChapters.map((c) => (
-          <article key={c.n} className="group grid gap-6 rounded-3xl border border-border bg-card p-6 md:grid-cols-12 md:p-10">
+          <article
+            key={c.n}
+            className="group grid gap-6 rounded-3xl border border-border bg-card p-6 md:grid-cols-12 md:p-10"
+          >
             <div className="md:col-span-3">
               <p className="font-display text-4xl text-[color:var(--clay)] md:text-6xl">{c.n}</p>
             </div>

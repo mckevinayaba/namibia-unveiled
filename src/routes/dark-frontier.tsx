@@ -2,9 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Moon, Telescope, Compass } from "lucide-react";
 
 import darkFrontier from "@/assets/dark-frontier.jpg";
-import camp from "@/assets/stay-camp.jpg";
-import rock from "@/assets/discover-rock.jpg";
-import himba from "@/assets/culture-himba.jpg";
+import { darkFrontierProducts } from "@/data/products";
+import { DarkFrontierProductCard } from "@/components/cards/DarkFrontierProductCard";
 
 export const Route = createFileRoute("/dark-frontier")({
   head: () => ({
@@ -42,9 +41,8 @@ function DarkFrontier() {
             Dark Frontier.
           </h1>
           <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-white/75 md:text-lg">
-            Namibia holds some of the darkest skies on Earth. A collection of
-            astronomy nights, silent desert evenings, and cultural sky stories —
-            planned around the moon.
+            Namibia holds some of the darkest skies on Earth. A collection of astronomy nights,
+            silent desert evenings, and cultural sky stories — planned around the moon.
           </p>
         </div>
       </section>
@@ -52,9 +50,21 @@ function DarkFrontier() {
       {/* Pillars */}
       <section className="container-wide grid gap-8 border-b border-white/10 py-16 md:grid-cols-3 md:py-24">
         {[
-          { Icon: Moon, t: "Bortle 1 nights", b: "Nights inside Africa's first International Dark Sky Reserve — the NamibRand, certified since 2012." },
-          { Icon: Telescope, t: "Guided astronomy", b: "Astrophotography sessions led by working astro-guides, with professional optics available on request." },
-          { Icon: Compass, t: "Sky stories", b: "Damara, Himba and San sky mythologies, shared by community-approved storytellers on their terms." },
+          {
+            Icon: Moon,
+            t: "Bortle 1 nights",
+            b: "Nights inside Africa's first International Dark Sky Reserve — the NamibRand, certified since 2012.",
+          },
+          {
+            Icon: Telescope,
+            t: "Guided astronomy",
+            b: "Astrophotography sessions led by working astro-guides, with professional optics available on request.",
+          },
+          {
+            Icon: Compass,
+            t: "Sky stories",
+            b: "Damara, Himba and San sky mythologies, shared by community-approved storytellers on their terms.",
+          },
         ].map(({ Icon, t, b }) => (
           <div key={t}>
             <Icon className="h-6 w-6 text-[color:var(--gold)]" strokeWidth={1.4} />
@@ -71,32 +81,13 @@ function DarkFrontier() {
             <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-[color:var(--gold-soft)]">
               The collection
             </p>
-            <h2 className="mt-4 font-display text-3xl md:text-5xl">Four ways into the dark.</h2>
+            <h2 className="mt-4 font-display text-3xl md:text-5xl">Six ways into the dark.</h2>
           </div>
         </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">
-          {[
-            { img: darkFrontier, tag: "2–3 nights", t: "Astronomy nights · NamibRand", b: "Bortle 1 skies, long uninterrupted evenings, and the arc of the galaxy overhead." },
-            { img: camp, tag: "3–4 nights", t: "Desert camp · Sossusvlei", b: "A quiet camp at the edge of the dune sea. Sunrise on the red dunes, ink-black nights." },
-            { img: rock, tag: "1–2 nights", t: "Rock art & sky · Damaraland", b: "Ancient rock engravings walked at first light, followed by an unhurried evening under a wide sky." },
-            { img: himba, tag: "Add-on", t: "Community evening · Kaokoland", b: "A conservancy-arranged evening with a Himba community — stars, fire, and stories, agreed in advance." },
-          ].map((x) => (
-            <article key={x.t} className="group overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04]">
-              <div className="relative aspect-[16/10] overflow-hidden">
-                <img src={x.img} alt={x.t} className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]" loading="lazy" />
-                <span className="absolute left-4 top-4 rounded-full bg-black/60 px-3 py-1 text-[10px] uppercase tracking-[0.2em] backdrop-blur">
-                  {x.tag}
-                </span>
-              </div>
-              <div className="p-6">
-                <h3 className="font-display text-2xl">{x.t}</h3>
-                <p className="mt-2 text-[14px] leading-relaxed text-white/70">{x.b}</p>
-                <button className="mt-5 inline-flex items-center gap-1.5 text-sm text-white">
-                  Enquire <ArrowUpRight className="h-4 w-4" />
-                </button>
-              </div>
-            </article>
+          {darkFrontierProducts.map((product) => (
+            <DarkFrontierProductCard key={product.slug} product={product} />
           ))}
         </div>
       </section>
@@ -115,14 +106,13 @@ function DarkFrontier() {
           </div>
           <div className="md:col-span-7">
             <p className="text-[15px] leading-relaxed text-white/75 md:text-base">
-              The best astronomy nights in Namibia fall in the week around a
-              new moon, and in the dry months from <em>May through October</em>
-              {" "}— when humidity is low, the air is still, and the horizon stays clear
-              well into the night.
+              The best astronomy nights in Namibia fall in the week around a new moon, and in the
+              dry months from <em>May through October</em> — when humidity is low, the air is still,
+              and the horizon stays clear well into the night.
             </p>
             <p className="mt-4 text-[14px] leading-relaxed text-white/60">
-              When you enquire we align dates with the moon phase for your travel
-              window, and share the exact darkest evenings for your trip.
+              When you enquire we align dates with the moon phase for your travel window, and share
+              the exact darkest evenings for your trip.
             </p>
           </div>
         </div>

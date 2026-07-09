@@ -20,7 +20,9 @@ export function PageHeader({
         {title}
       </h1>
       {intro ? (
-        <p className={`mt-5 max-w-xl text-[15px] leading-relaxed text-muted-foreground md:text-base ${align === "center" ? "mx-auto" : ""}`}>
+        <p
+          className={`mt-5 max-w-xl text-[15px] leading-relaxed text-muted-foreground md:text-base ${align === "center" ? "mx-auto" : ""}`}
+        >
           {intro}
         </p>
       ) : null}

@@ -9,7 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as RoutesRouteImport } from './routes/routes'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as PartnerRouteImport } from './routes/partner'
 import { Route as GuideRouteImport } from './routes/guide'
@@ -17,12 +16,11 @@ import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as DarkFrontierRouteImport } from './routes/dark-frontier'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as RoutesIndexRouteImport } from './routes/routes/index'
+import { Route as RoutesRequestRouteImport } from './routes/routes/request'
+import { Route as RoutesSlugRouteImport } from './routes/routes/$slug'
+import { Route as ExperiencesSlugRouteImport } from './routes/experiences/$slug'
 
-const RoutesRoute = RoutesRouteImport.update({
-  id: '/routes',
-  path: '/routes',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
@@ -58,6 +56,26 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RoutesIndexRoute = RoutesIndexRouteImport.update({
+  id: '/routes/',
+  path: '/routes/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoutesRequestRoute = RoutesRequestRouteImport.update({
+  id: '/routes/request',
+  path: '/routes/request',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoutesSlugRoute = RoutesSlugRouteImport.update({
+  id: '/routes/$slug',
+  path: '/routes/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExperiencesSlugRoute = ExperiencesSlugRouteImport.update({
+  id: '/experiences/$slug',
+  path: '/experiences/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -67,7 +85,10 @@ export interface FileRoutesByFullPath {
   '/guide': typeof GuideRoute
   '/partner': typeof PartnerRoute
   '/profile': typeof ProfileRoute
-  '/routes': typeof RoutesRoute
+  '/experiences/$slug': typeof ExperiencesSlugRoute
+  '/routes/$slug': typeof RoutesSlugRoute
+  '/routes/request': typeof RoutesRequestRoute
+  '/routes/': typeof RoutesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -77,7 +98,10 @@ export interface FileRoutesByTo {
   '/guide': typeof GuideRoute
   '/partner': typeof PartnerRoute
   '/profile': typeof ProfileRoute
-  '/routes': typeof RoutesRoute
+  '/experiences/$slug': typeof ExperiencesSlugRoute
+  '/routes/$slug': typeof RoutesSlugRoute
+  '/routes/request': typeof RoutesRequestRoute
+  '/routes': typeof RoutesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -88,7 +112,10 @@ export interface FileRoutesById {
   '/guide': typeof GuideRoute
   '/partner': typeof PartnerRoute
   '/profile': typeof ProfileRoute
-  '/routes': typeof RoutesRoute
+  '/experiences/$slug': typeof ExperiencesSlugRoute
+  '/routes/$slug': typeof RoutesSlugRoute
+  '/routes/request': typeof RoutesRequestRoute
+  '/routes/': typeof RoutesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -100,7 +127,10 @@ export interface FileRouteTypes {
     | '/guide'
     | '/partner'
     | '/profile'
-    | '/routes'
+    | '/experiences/$slug'
+    | '/routes/$slug'
+    | '/routes/request'
+    | '/routes/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -110,6 +140,9 @@ export interface FileRouteTypes {
     | '/guide'
     | '/partner'
     | '/profile'
+    | '/experiences/$slug'
+    | '/routes/$slug'
+    | '/routes/request'
     | '/routes'
   id:
     | '__root__'
@@ -120,7 +153,10 @@ export interface FileRouteTypes {
     | '/guide'
     | '/partner'
     | '/profile'
-    | '/routes'
+    | '/experiences/$slug'
+    | '/routes/$slug'
+    | '/routes/request'
+    | '/routes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -131,18 +167,14 @@ export interface RootRouteChildren {
   GuideRoute: typeof GuideRoute
   PartnerRoute: typeof PartnerRoute
   ProfileRoute: typeof ProfileRoute
-  RoutesRoute: typeof RoutesRoute
+  ExperiencesSlugRoute: typeof ExperiencesSlugRoute
+  RoutesSlugRoute: typeof RoutesSlugRoute
+  RoutesRequestRoute: typeof RoutesRequestRoute
+  RoutesIndexRoute: typeof RoutesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/routes': {
-      id: '/routes'
-      path: '/routes'
-      fullPath: '/routes'
-      preLoaderRoute: typeof RoutesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/profile': {
       id: '/profile'
       path: '/profile'
@@ -192,6 +224,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/routes/': {
+      id: '/routes/'
+      path: '/routes'
+      fullPath: '/routes/'
+      preLoaderRoute: typeof RoutesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/routes/request': {
+      id: '/routes/request'
+      path: '/routes/request'
+      fullPath: '/routes/request'
+      preLoaderRoute: typeof RoutesRequestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/routes/$slug': {
+      id: '/routes/$slug'
+      path: '/routes/$slug'
+      fullPath: '/routes/$slug'
+      preLoaderRoute: typeof RoutesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/experiences/$slug': {
+      id: '/experiences/$slug'
+      path: '/experiences/$slug'
+      fullPath: '/experiences/$slug'
+      preLoaderRoute: typeof ExperiencesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -203,7 +263,10 @@ const rootRouteChildren: RootRouteChildren = {
   GuideRoute: GuideRoute,
   PartnerRoute: PartnerRoute,
   ProfileRoute: ProfileRoute,
-  RoutesRoute: RoutesRoute,
+  ExperiencesSlugRoute: ExperiencesSlugRoute,
+  RoutesSlugRoute: RoutesSlugRoute,
+  RoutesRequestRoute: RoutesRequestRoute,
+  RoutesIndexRoute: RoutesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -11,8 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { BottomNav } from "../components/BottomNav";
-import { TopBar } from "../components/TopBar";
+import { AppShell } from "../components/layouts/AppShell";
 
 function NotFoundComponent() {
   return (
@@ -50,7 +49,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         <h1 className="mt-4 font-display text-4xl text-foreground">Let's try that again.</h1>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <button
-            onClick={() => { router.invalidate(); reset(); }}
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
             className="rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:opacity-90"
           >
             Try again
@@ -89,9 +91,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Beyond The Loop · Namibia beyond the standard trail" },
-      { name: "twitter:description", content: "Discover, plan, book and safely experience Namibia beyond the standard tourism loop — dark skies, desert silence, community, and self-drive confidence." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/79b3e555-7c3f-413b-9a95-1f4449e71633/id-preview-68ab5b3c--672756c7-2db7-42b7-a099-de2f34dabaae.lovable.app-1783608249371.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/79b3e555-7c3f-413b-9a95-1f4449e71633/id-preview-68ab5b3c--672756c7-2db7-42b7-a099-de2f34dabaae.lovable.app-1783608249371.png" },
+      {
+        name: "twitter:description",
+        content:
+          "Discover, plan, book and safely experience Namibia beyond the standard tourism loop — dark skies, desert silence, community, and self-drive confidence.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/79b3e555-7c3f-413b-9a95-1f4449e71633/id-preview-68ab5b3c--672756c7-2db7-42b7-a099-de2f34dabaae.lovable.app-1783608249371.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/79b3e555-7c3f-413b-9a95-1f4449e71633/id-preview-68ab5b3c--672756c7-2db7-42b7-a099-de2f34dabaae.lovable.app-1783608249371.png",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -129,13 +143,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="relative min-h-screen bg-background text-foreground">
-        <TopBar />
-        <main className="pb-28 pt-14 md:pb-16 md:pt-20">
-          <Outlet />
-        </main>
-        <BottomNav />
-      </div>
+      <AppShell>
+        <Outlet />
+      </AppShell>
     </QueryClientProvider>
   );
 }
