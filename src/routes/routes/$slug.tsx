@@ -13,6 +13,8 @@ import {
 
 import { PageHeader } from "@/components/sections/PageHeader";
 import { routes } from "@/data/routes";
+import type { Route as RouteType, SuggestedStop, PartnerPlaceholder } from "@/types/routes";
+
 
 export const Route = createFileRoute("/routes/$slug")({
   loader: ({ params }) => {
@@ -32,7 +34,7 @@ export const Route = createFileRoute("/routes/$slug")({
 });
 
 function RouteDetailPage() {
-  const route = Route.useLoaderData();
+  const route = Route.useLoaderData() as RouteType;
 
   return (
     <div className="pb-8">
@@ -65,7 +67,7 @@ function RouteDetailPage() {
           <div className="mt-10">
             <p className="eyebrow">Experience highlights</p>
             <ul className="mt-4 grid gap-3">
-              {route.highlights.map((h) => (
+              {route.highlights.map((h: string) => (
                 <li
                   key={h}
                   className="flex items-start gap-3 rounded-2xl border border-border bg-card p-4 text-[14px]"
@@ -83,7 +85,7 @@ function RouteDetailPage() {
           <div className="mt-10">
             <p className="eyebrow">Suggested stops</p>
             <ol className="mt-4 grid gap-3">
-              {route.suggestedStops.map((stop, i) => (
+              {route.suggestedStops.map((stop: SuggestedStop, i: number) => (
                 <li
                   key={stop.name}
                   className="flex items-start gap-4 rounded-2xl border border-border bg-card p-4"
@@ -105,7 +107,7 @@ function RouteDetailPage() {
           <div className="rounded-3xl border border-border bg-[color:var(--sand)] p-6 md:p-8">
             <p className="eyebrow">Regions on this route</p>
             <ul className="mt-4 flex flex-wrap gap-2">
-              {route.regions.map((reg) => (
+              {route.regions.map((reg: string) => (
                 <li
                   key={reg}
                   className="inline-flex items-center gap-1 rounded-full border border-border bg-background px-3 py-1 text-[12px]"
@@ -118,7 +120,7 @@ function RouteDetailPage() {
 
             <p className="eyebrow mt-8">Partners on this route</p>
             <div className="mt-4 grid gap-3">
-              {route.partnerPlaceholders.map((p, i) => (
+              {route.partnerPlaceholders.map((p: PartnerPlaceholder, i: number) => (
                 <div
                   key={i}
                   className="rounded-2xl border border-dashed border-border bg-background/60 p-4"
