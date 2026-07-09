@@ -9,8 +9,50 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RoutesRouteImport } from './routes/routes'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as PartnerRouteImport } from './routes/partner'
+import { Route as GuideRouteImport } from './routes/guide'
+import { Route as DiscoverRouteImport } from './routes/discover'
+import { Route as DarkFrontierRouteImport } from './routes/dark-frontier'
+import { Route as BookRouteImport } from './routes/book'
 import { Route as IndexRouteImport } from './routes/index'
 
+const RoutesRoute = RoutesRouteImport.update({
+  id: '/routes',
+  path: '/routes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnerRoute = PartnerRouteImport.update({
+  id: '/partner',
+  path: '/partner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuideRoute = GuideRouteImport.update({
+  id: '/guide',
+  path: '/guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscoverRoute = DiscoverRouteImport.update({
+  id: '/discover',
+  path: '/discover',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DarkFrontierRoute = DarkFrontierRouteImport.update({
+  id: '/dark-frontier',
+  path: '/dark-frontier',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookRoute = BookRouteImport.update({
+  id: '/book',
+  path: '/book',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +61,130 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/book': typeof BookRoute
+  '/dark-frontier': typeof DarkFrontierRoute
+  '/discover': typeof DiscoverRoute
+  '/guide': typeof GuideRoute
+  '/partner': typeof PartnerRoute
+  '/profile': typeof ProfileRoute
+  '/routes': typeof RoutesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/book': typeof BookRoute
+  '/dark-frontier': typeof DarkFrontierRoute
+  '/discover': typeof DiscoverRoute
+  '/guide': typeof GuideRoute
+  '/partner': typeof PartnerRoute
+  '/profile': typeof ProfileRoute
+  '/routes': typeof RoutesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/book': typeof BookRoute
+  '/dark-frontier': typeof DarkFrontierRoute
+  '/discover': typeof DiscoverRoute
+  '/guide': typeof GuideRoute
+  '/partner': typeof PartnerRoute
+  '/profile': typeof ProfileRoute
+  '/routes': typeof RoutesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/book'
+    | '/dark-frontier'
+    | '/discover'
+    | '/guide'
+    | '/partner'
+    | '/profile'
+    | '/routes'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/book'
+    | '/dark-frontier'
+    | '/discover'
+    | '/guide'
+    | '/partner'
+    | '/profile'
+    | '/routes'
+  id:
+    | '__root__'
+    | '/'
+    | '/book'
+    | '/dark-frontier'
+    | '/discover'
+    | '/guide'
+    | '/partner'
+    | '/profile'
+    | '/routes'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BookRoute: typeof BookRoute
+  DarkFrontierRoute: typeof DarkFrontierRoute
+  DiscoverRoute: typeof DiscoverRoute
+  GuideRoute: typeof GuideRoute
+  PartnerRoute: typeof PartnerRoute
+  ProfileRoute: typeof ProfileRoute
+  RoutesRoute: typeof RoutesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/routes': {
+      id: '/routes'
+      path: '/routes'
+      fullPath: '/routes'
+      preLoaderRoute: typeof RoutesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partner': {
+      id: '/partner'
+      path: '/partner'
+      fullPath: '/partner'
+      preLoaderRoute: typeof PartnerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guide': {
+      id: '/guide'
+      path: '/guide'
+      fullPath: '/guide'
+      preLoaderRoute: typeof GuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discover': {
+      id: '/discover'
+      path: '/discover'
+      fullPath: '/discover'
+      preLoaderRoute: typeof DiscoverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dark-frontier': {
+      id: '/dark-frontier'
+      path: '/dark-frontier'
+      fullPath: '/dark-frontier'
+      preLoaderRoute: typeof DarkFrontierRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/book': {
+      id: '/book'
+      path: '/book'
+      fullPath: '/book'
+      preLoaderRoute: typeof BookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +197,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BookRoute: BookRoute,
+  DarkFrontierRoute: DarkFrontierRoute,
+  DiscoverRoute: DiscoverRoute,
+  GuideRoute: GuideRoute,
+  PartnerRoute: PartnerRoute,
+  ProfileRoute: ProfileRoute,
+  RoutesRoute: RoutesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
