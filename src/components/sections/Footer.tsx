@@ -22,22 +22,22 @@ export function Footer() {
           <p className="eyebrow">Platform</p>
           <ul className="mt-3 space-y-2 text-sm">
             <li>
-              <Link to="/discover" className="hover:text-foreground text-muted-foreground">
+              <Link to="/discover" className="text-white/60 hover:text-white">
                 Discover
               </Link>
             </li>
             <li>
-              <Link to="/routes" className="hover:text-foreground text-muted-foreground">
+              <Link to="/routes" className="text-white/60 hover:text-white">
                 Routes
               </Link>
             </li>
             <li>
-              <Link to="/book" className="hover:text-foreground text-muted-foreground">
+              <Link to="/book" className="text-white/60 hover:text-white">
                 Book
               </Link>
             </li>
             <li>
-              <Link to="/guide" className="hover:text-foreground text-muted-foreground">
+              <Link to="/guide" className="text-white/60 hover:text-white">
                 Guide
               </Link>
             </li>
@@ -47,17 +47,17 @@ export function Footer() {
           <p className="eyebrow">Company</p>
           <ul className="mt-3 space-y-2 text-sm">
             <li>
-              <Link to="/dark-frontier" className="hover:text-foreground text-muted-foreground">
+              <Link to="/dark-frontier" className="text-white/60 hover:text-white">
                 Dark Frontier
               </Link>
             </li>
             <li>
-              <Link to="/partner" className="hover:text-foreground text-muted-foreground">
+              <Link to="/partner" className="text-white/60 hover:text-white">
                 Partner with us
               </Link>
             </li>
             <li>
-              <Link to="/profile" className="hover:text-foreground text-muted-foreground">
+              <Link to="/profile" className="text-white/60 hover:text-white">
                 Account
               </Link>
             </li>
@@ -65,7 +65,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-border/70">
-        <div className="container-wide flex flex-col items-start justify-between gap-2 py-5 text-xs text-muted-foreground md:flex-row md:items-center">
+        <div className="container-wide flex flex-col items-start justify-between gap-2 py-5 text-xs text-white/50 md:flex-row md:items-center">
           <p>© {new Date().getFullYear()} Beyond The Loop Namibia</p>
           <p>Made in Namibia · for the traveller who came for the quiet.</p>
         </div>
