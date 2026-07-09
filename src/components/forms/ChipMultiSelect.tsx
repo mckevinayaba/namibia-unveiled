@@ -17,10 +17,10 @@ export function ChipMultiSelect({
 
   return (
     <div>
-      <label className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+      <label className="block text-[10.5px] font-medium uppercase tracking-[0.22em] text-muted-foreground">
         {label}
       </label>
-      <div className="mt-2 flex flex-wrap gap-2">
+      <div className="mt-3 flex flex-wrap gap-2">
         {options.map((option) => {
           const active = value.includes(option);
           return (
@@ -29,10 +29,10 @@ export function ChipMultiSelect({
               key={option}
               onClick={() => toggle(option)}
               aria-pressed={active}
-              className={`rounded-full border px-3 py-1.5 text-[12px] transition ${
+              className={`rounded-full border px-4 py-2 text-[12.5px] tracking-[0.01em] transition-all duration-200 ${
                 active
-                  ? "border-foreground bg-foreground text-background"
-                  : "border-border bg-background hover:border-foreground/50"
+                  ? "border-foreground bg-foreground text-background shadow-[0_6px_20px_-8px_rgba(20,22,28,0.35)]"
+                  : "border-border/80 bg-background/60 text-foreground/75 hover:border-foreground/40 hover:text-foreground"
               }`}
             >
               {option}
