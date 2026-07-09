@@ -34,6 +34,7 @@ type BookingFormValues = z.infer<typeof bookingSchema>;
 
 export function BookingForm({ initialInterest }: { initialInterest?: string }) {
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
@@ -55,8 +56,15 @@ export function BookingForm({ initialInterest }: { initialInterest?: string }) {
 
   async function onSubmit(values: BookingFormValues) {
     const enquiry: BookingEnquiry = values;
-    await submitBookingEnquiry(enquiry);
-    setSubmitted(true);
+    setSubmitError(null);
+    try {
+      await submitBookingEnquiry(enquiry);
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error ? err.message : "Something went wrong. Please try again.",
+      );
+    }
   }
 
   if (submitted) {
@@ -135,6 +143,9 @@ export function BookingForm({ initialInterest }: { initialInterest?: string }) {
             registration={register("notes")}
             error={errors.notes}
           />
+          {submitError ? (
+            <p className="text-center text-[12px] text-destructive">{submitError}</p>
+          ) : null}
           <button
             type="submit"
             disabled={isSubmitting}

@@ -1,13 +1,12 @@
-/**
- * Placeholder — Supabase is not yet connected.
- *
- * This file exists so submission and data-fetching code can be written
- * against a stable import path ahead of time. When credentials exist,
- * install `@supabase/supabase-js`, replace the body of `getSupabaseClient`
- * with a real `createClient(url, anonKey)` call, and nothing else in the
- * app should need to change.
- */
+import { createClient } from "@supabase/supabase-js";
 
-export function getSupabaseClient(): never {
-  throw new Error("Supabase is not yet configured. See src/lib/supabase.ts for setup notes.");
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabasePublishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+
+if (!supabaseUrl || !supabasePublishableKey) {
+  throw new Error(
+    "Missing Supabase environment variables. Set VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY in .env.local.",
+  );
 }
+
+export const supabase = createClient(supabaseUrl, supabasePublishableKey);

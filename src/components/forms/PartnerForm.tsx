@@ -21,6 +21,7 @@ type PartnerFormValues = z.infer<typeof partnerSchema>;
 
 export function PartnerForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
@@ -32,8 +33,15 @@ export function PartnerForm() {
 
   async function onSubmit(values: PartnerFormValues) {
     const application: PartnerApplication = values;
-    await submitPartnerApplication(application);
-    setSubmitted(true);
+    setSubmitError(null);
+    try {
+      await submitPartnerApplication(application);
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error ? err.message : "Something went wrong. Please try again.",
+      );
+    }
   }
 
   if (submitted) {
@@ -83,6 +91,9 @@ export function PartnerForm() {
           registration={register("message")}
           error={errors.message}
         />
+        {submitError ? (
+          <p className="text-center text-[12px] text-destructive">{submitError}</p>
+        ) : null}
         <button
           type="submit"
           disabled={isSubmitting}

@@ -79,6 +79,7 @@ type RouteRequestFormValues = z.infer<typeof routeRequestSchema>;
 
 export function RouteRequestForm({ initialRoute }: { initialRoute?: string }) {
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
@@ -105,8 +106,15 @@ export function RouteRequestForm({ initialRoute }: { initialRoute?: string }) {
 
   async function onSubmit(values: RouteRequestFormValues) {
     const request: RouteRequest = values;
-    await submitRouteRequest(request);
-    setSubmitted(true);
+    setSubmitError(null);
+    try {
+      await submitRouteRequest(request);
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error ? err.message : "Something went wrong. Please try again.",
+      );
+    }
   }
 
   if (submitted) {
@@ -262,6 +270,9 @@ export function RouteRequestForm({ initialRoute }: { initialRoute?: string }) {
             registration={register("notes")}
             error={errors.notes}
           />
+          {submitError ? (
+            <p className="text-center text-[12px] text-destructive">{submitError}</p>
+          ) : null}
           <button
             type="submit"
             disabled={isSubmitting}
