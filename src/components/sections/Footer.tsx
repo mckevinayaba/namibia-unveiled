@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
-const logo = { url: "/btl-logo-ink.png" };
+const logo = { url: "/btl-logo-cream.png" };
 
 export function Footer() {
   return (
