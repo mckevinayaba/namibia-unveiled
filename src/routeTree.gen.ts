@@ -17,6 +17,7 @@ import { Route as DarkFrontierRouteImport } from './routes/dark-frontier'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as RoutesIndexRouteImport } from './routes/routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as RoutesRequestRouteImport } from './routes/routes/request'
 import { Route as RoutesSlugRouteImport } from './routes/routes/$slug'
 import { Route as ExperiencesSlugRouteImport } from './routes/experiences/$slug'
@@ -61,6 +62,11 @@ const RoutesIndexRoute = RoutesIndexRouteImport.update({
   path: '/routes/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RoutesRequestRoute = RoutesRequestRouteImport.update({
   id: '/routes/request',
   path: '/routes/request',
@@ -88,6 +94,7 @@ export interface FileRoutesByFullPath {
   '/experiences/$slug': typeof ExperiencesSlugRoute
   '/routes/$slug': typeof RoutesSlugRoute
   '/routes/request': typeof RoutesRequestRoute
+  '/admin/': typeof AdminIndexRoute
   '/routes/': typeof RoutesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -101,6 +108,7 @@ export interface FileRoutesByTo {
   '/experiences/$slug': typeof ExperiencesSlugRoute
   '/routes/$slug': typeof RoutesSlugRoute
   '/routes/request': typeof RoutesRequestRoute
+  '/admin': typeof AdminIndexRoute
   '/routes': typeof RoutesIndexRoute
 }
 export interface FileRoutesById {
@@ -115,6 +123,7 @@ export interface FileRoutesById {
   '/experiences/$slug': typeof ExperiencesSlugRoute
   '/routes/$slug': typeof RoutesSlugRoute
   '/routes/request': typeof RoutesRequestRoute
+  '/admin/': typeof AdminIndexRoute
   '/routes/': typeof RoutesIndexRoute
 }
 export interface FileRouteTypes {
@@ -130,6 +139,7 @@ export interface FileRouteTypes {
     | '/experiences/$slug'
     | '/routes/$slug'
     | '/routes/request'
+    | '/admin/'
     | '/routes/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -143,6 +153,7 @@ export interface FileRouteTypes {
     | '/experiences/$slug'
     | '/routes/$slug'
     | '/routes/request'
+    | '/admin'
     | '/routes'
   id:
     | '__root__'
@@ -156,6 +167,7 @@ export interface FileRouteTypes {
     | '/experiences/$slug'
     | '/routes/$slug'
     | '/routes/request'
+    | '/admin/'
     | '/routes/'
   fileRoutesById: FileRoutesById
 }
@@ -170,6 +182,7 @@ export interface RootRouteChildren {
   ExperiencesSlugRoute: typeof ExperiencesSlugRoute
   RoutesSlugRoute: typeof RoutesSlugRoute
   RoutesRequestRoute: typeof RoutesRequestRoute
+  AdminIndexRoute: typeof AdminIndexRoute
   RoutesIndexRoute: typeof RoutesIndexRoute
 }
 
@@ -231,6 +244,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RoutesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/routes/request': {
       id: '/routes/request'
       path: '/routes/request'
@@ -266,6 +286,7 @@ const rootRouteChildren: RootRouteChildren = {
   ExperiencesSlugRoute: ExperiencesSlugRoute,
   RoutesSlugRoute: RoutesSlugRoute,
   RoutesRequestRoute: RoutesRequestRoute,
+  AdminIndexRoute: AdminIndexRoute,
   RoutesIndexRoute: RoutesIndexRoute,
 }
 export const routeTree = rootRouteImport
