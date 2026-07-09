@@ -27,24 +27,25 @@ export function TopBar() {
       className={`fixed inset-x-0 top-0 z-40 transition-[background,backdrop-filter,border-color,box-shadow] duration-500 ${
         scrolled
           ? "glass-bone border-b border-border/60"
-          : "bg-transparent border-b border-transparent"
+          : "glass-bone border-b border-border/40 md:bg-transparent md:border-transparent md:backdrop-blur-none"
       }`}
     >
-      <div className="container-wide flex h-24 items-center justify-between md:h-28">
+      <div className="container-wide flex h-20 items-center justify-between md:h-28">
         {/* Logo */}
         <Link
           to="/"
           aria-label="Beyond The Loop Namibia — home"
-          className="flex items-center transition-opacity hover:opacity-85"
+          className="flex min-w-0 items-center transition-opacity hover:opacity-85"
         >
           <img
             src={logoInk.url}
             alt="Beyond The Loop Namibia"
-            className="h-16 w-auto md:h-20"
+            className="h-12 w-auto sm:h-14 md:h-20"
             loading="eager"
             decoding="async"
           />
         </Link>
+
 
         {/* Desktop nav */}
         <nav aria-label="Primary" className="hidden md:flex md:items-center">
