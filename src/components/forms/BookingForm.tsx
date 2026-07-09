@@ -69,7 +69,7 @@ export function BookingForm({ initialInterest }: { initialInterest?: string }) {
 
   if (submitted) {
     return (
-      <div className="rounded-3xl border border-border bg-card p-6 md:p-10">
+      <div className="rounded-[28px] border border-border/70 bg-card p-8 shadow-[0_40px_100px_-50px_rgba(20,22,28,0.35)] md:p-12">
         <FormConfirmation
           title="Your request has been received."
           message="A specialist on our Windhoek team will respond within one working day with a considered draft itinerary."
@@ -80,8 +80,21 @@ export function BookingForm({ initialInterest }: { initialInterest?: string }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="rounded-3xl border border-border bg-card p-6 md:p-10">
-        <div className="grid gap-5">
+      <div className="relative overflow-hidden rounded-[28px] border border-border/70 bg-card shadow-[0_40px_100px_-50px_rgba(20,22,28,0.35)]">
+        {/* subtle top hairline accent */}
+        <div
+          aria-hidden
+          className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--gold)]/40 to-transparent"
+        />
+        <div className="flex items-center justify-between border-b border-border/60 px-8 pb-5 pt-7 md:px-10">
+          <p className="text-[10.5px] font-medium uppercase tracking-[0.24em] text-muted-foreground">
+            Itinerary request
+          </p>
+          <p className="hidden text-[11px] tracking-wide text-muted-foreground md:block">
+            Windhoek · replies within 1 working day
+          </p>
+        </div>
+        <div className="grid gap-5 p-8 md:p-10">
           <TextField
             label="Your name"
             placeholder="Full name"
@@ -149,12 +162,18 @@ export function BookingForm({ initialInterest }: { initialInterest?: string }) {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground hover:opacity-90 disabled:opacity-60"
+            className="group mt-3 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-4 text-[13.5px] font-medium tracking-[0.06em] uppercase text-primary-foreground shadow-[0_20px_50px_-20px_rgba(20,22,28,0.6)] transition-all duration-300 hover:shadow-[0_30px_60px_-20px_rgba(20,22,28,0.65)] hover:-translate-y-[1px] disabled:opacity-60 disabled:hover:translate-y-0"
           >
             {isSubmitting ? "Sending…" : "Request an itinerary"}
+            <span
+              aria-hidden
+              className="inline-block transition-transform duration-300 group-hover:translate-x-0.5"
+            >
+              →
+            </span>
           </button>
-          <p className="text-center text-[11px] text-muted-foreground">
-            No card required. A specialist replies within one working day.
+          <p className="text-center text-[11.5px] tracking-wide text-muted-foreground">
+            No card required · A specialist replies within one working day
           </p>
         </div>
       </div>
