@@ -73,21 +73,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { name: "theme-color", content: "#1a1c22" },
-      { title: "Beyond The Loop · Namibia beyond the standard tourism trail" },
+      { title: "Beyond The Loop · Namibia beyond the standard trail" },
       {
         name: "description",
         content:
-          "A luxury travel intelligence platform for hidden Namibia — dark skies, desert silence, community experiences and confident self-drive routes.",
+          "Discover, plan, book and safely experience Namibia beyond the standard tourism loop — dark skies, desert silence, community, and self-drive confidence.",
       },
       { name: "author", content: "Beyond The Loop Namibia" },
-      { property: "og:title", content: "Beyond The Loop · Namibia" },
+      { property: "og:title", content: "Beyond The Loop · Namibia beyond the standard trail" },
       {
         property: "og:description",
         content:
-          "Discover, plan, book and safely experience Namibia beyond the standard loop.",
+          "Discover, plan, book and safely experience Namibia beyond the standard tourism loop — dark skies, desert silence, community, and self-drive confidence.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Beyond The Loop · Namibia beyond the standard trail" },
+      { name: "twitter:description", content: "Discover, plan, book and safely experience Namibia beyond the standard tourism loop — dark skies, desert silence, community, and self-drive confidence." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/79b3e555-7c3f-413b-9a95-1f4449e71633/id-preview-68ab5b3c--672756c7-2db7-42b7-a099-de2f34dabaae.lovable.app-1783608249371.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/79b3e555-7c3f-413b-9a95-1f4449e71633/id-preview-68ab5b3c--672756c7-2db7-42b7-a099-de2f34dabaae.lovable.app-1783608249371.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
